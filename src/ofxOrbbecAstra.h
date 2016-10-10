@@ -71,7 +71,9 @@ protected:
 	bool bDepthImageEnabled;
 	unsigned short nearClip;
 	unsigned short farClip;
-
+	
+	bool bUseMirroring;
+	
 	ofShortPixels depthPixels;
 	ofImage depthImage;
 	ofImage colorImage;

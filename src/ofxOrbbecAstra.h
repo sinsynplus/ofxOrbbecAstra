@@ -25,6 +25,9 @@ public:
     
 	void enableDepthImage(bool enable);
 	void enableRegistration(bool useRegistration);
+	
+	void enableMirroring(bool useMirroring);
+	
 	void setDepthClipping(unsigned short near, unsigned short far);
 
 	void initColorStream();

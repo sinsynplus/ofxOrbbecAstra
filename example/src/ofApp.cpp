@@ -16,6 +16,9 @@ void ofApp::setup(){
 	bDrawPointCloud = false;
 	bPointCloudUseColor = false;
 	bUseRegistration = true;
+	
+	bUseMirroring = false;
+	
 	mesh.setMode(OF_PRIMITIVE_POINTS);
 
 	astra.setup();
@@ -30,6 +33,8 @@ void ofApp::setup(){
 	astra.initDepthStream();
 	astra.initPointStream();
 	astra.initHandStream();
+	
+	astra.enableMirroring(bUseMirroring);
 }
 
 void ofApp::update(){
@@ -128,5 +133,10 @@ void ofApp::keyPressed(int key){
 	if (key == 'r') {
 		bUseRegistration ^= 1;
 		astra.enableRegistration(bUseRegistration);
+	}
+	
+	if (key == 'm') {
+        	bUseMirroring ^= 1;
+        	astra.enableMirroring(bUseMirroring);
 	}
 }

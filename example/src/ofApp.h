@@ -29,5 +29,7 @@ public:
 	bool bDrawPointCloud;
 	bool bPointCloudUseColor;
 	bool bUseRegistration;
-
+	
+	bool bUseMirroring;
+	
 };

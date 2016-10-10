@@ -13,7 +13,9 @@ ofxOrbbecAstra::ofxOrbbecAstra() {
 	height = 480;
 	nearClip = 300;
 	farClip = 1800;
-
+	
+	bUseMirroring = false;
+	
 	bSetup = false;
 	bIsFrameNew = false;
 	bDepthImageEnabled = true;
@@ -54,6 +56,14 @@ void ofxOrbbecAstra::enableRegistration(bool useRegistration) {
 	}
 
 	reader.stream<astra::DepthStream>().enable_registration(useRegistration);
+}
+
+void ofxOrbbecAstra::enableMirroring(bool useMirroring) {
+    reader.stream<astra::DepthStream>().enable_mirroring(useMirroring);
+    reader.stream<astra::ColorStream>().enable_mirroring(useMirroring);
+    reader.stream<astra::InfraredStream>().enable_mirroring(useMirroring);
+    
+    bUseMirroring = useMirroring;
 }
 
 void ofxOrbbecAstra::setDepthClipping(unsigned short near, unsigned short far) {
@@ -133,7 +143,7 @@ void ofxOrbbecAstra::update(){
 		grabber->update();
 		if (grabber->isFrameNew()) {
 			colorImage.setFromPixels(grabber->getPixels());
-			colorImage.mirror(false, true);
+			colorImage.mirror(false, bUseMirroring);
 			colorImage.update();
 		}
 	}
